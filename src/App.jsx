@@ -1,36 +1,35 @@
 import { useState } from "react";
 
 function App() {
-  // const [taskList, setTaskList] = useState([]);
-  // const [task, setTask] = useState("");
+  const [taskList, setTaskList] = useState([]);
+  const [task, setTask] = useState("");
 
-  // const handleChange = (event) => {
-  //   setTask(event.target.value);
-  // };
+  const handleChange = (event) => {
+    setTask(event.target.value);
+  };
 
-  // const handleClick = () => {
-  //   if (task !== "") {
-  //     const newTaskArray = [...taskList, task];
-  //     setTaskList(newTaskArray);
-  //     setTask("");
-  //   }
-  // };
+  const handleClick = () => {
+    if (task !== "") {
+      const newTaskArray = [...taskList, task];
+      setTaskList(newTaskArray);
+      setTask("");
+    }
+  };
 
-  // const deletTask = (index) => {
-  //   const newFilterArray = taskList.filter((name, indx) => {
-  //     return indx !== index;
-  //   });
-  //   setTaskList(newFilterArray);
-  // };
+  const deletTask = (index) => {
+    const newFilterArray = taskList.filter((name, indx) => {
+      return indx !== index;
+    });
+    setTaskList(newFilterArray);
+  };
 
-  // const deletAll = () => {
-  //   setTaskList([]);
-  // };
+  const deletAll = () => {
+    setTaskList([]);
+  };
 
   return (
-    <div className="font-black text-6xl">FUCK YOU YASH GUPTA</div>
-    // <div className="bg-blue-500 p-3 h-1/2 overflow-y">
-    /* <div className="bg-red-400 p-3">
+    <div className="bg-blue-500 p-3 h-1/2 overflow-y-auto">
+      <div className="bg-red-400 p-3">
         <input
           type="text"
           value={task}
@@ -52,8 +51,8 @@ function App() {
             </div>
           );
         })}
-      </div> */
-    // </div>
+      </div>
+    </div>
   );
 }
 
