@@ -1,33 +1,59 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [taskList, setTaskList] = useState([]);
+  // const [task, setTask] = useState("");
+
+  // const handleChange = (event) => {
+  //   setTask(event.target.value);
+  // };
+
+  // const handleClick = () => {
+  //   if (task !== "") {
+  //     const newTaskArray = [...taskList, task];
+  //     setTaskList(newTaskArray);
+  //     setTask("");
+  //   }
+  // };
+
+  // const deletTask = (index) => {
+  //   const newFilterArray = taskList.filter((name, indx) => {
+  //     return indx !== index;
+  //   });
+  //   setTaskList(newFilterArray);
+  // };
+
+  // const deletAll = () => {
+  //   setTaskList([]);
+  // };
 
   return (
-    <>
+    <div className="font-black text-6xl">FUCK YOU YASH GUPTA</div>
+    // <div className="bg-blue-500 p-3 h-1/2 overflow-y">
+    /* <div className="bg-red-400 p-3">
+        <input
+          type="text"
+          value={task}
+          onChange={handleChange}
+          onKeyDown={(event) => {
+            event.key === "Enter" && handleClick();
+            event.key === "Backspace" && deletAll();
+          }}
+        />
+        <button onClick={handleClick}>ADD</button>
+        <button onClick={deletAll}>DELETE All</button>
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        {taskList.map((element, index) => {
+          return (
+            <div className="container">
+              <div className="EachDiv">{element}</div>
+              <button onClick={() => deletTask(index)}>x</button>
+            </div>
+          );
+        })}
+      </div> */
+    // </div>
   );
 }
 
