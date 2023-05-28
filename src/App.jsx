@@ -10,7 +10,7 @@ function App() {
   };
 
   const handleClick = () => {
-    if (task !== "") {
+    if (task.trim() !== "") {
       const newTaskArray = [...taskList, task];
       setTaskList(newTaskArray);
       setTask("");
@@ -46,10 +46,9 @@ function App() {
                 onChange={handleChange}
                 onKeyDown={(event) => {
                   event.key === "Enter" && handleClick();
-                  event.key === "Backspace" && deletAll();
+                  event.ctrlKey && event.shiftKey && deletAll();
                 }}
               />
-
               <button
                 className="bg-[#149209] py-1 px-2 rounded-tr-md font-bold text-white"
                 onClick={handleClick}
