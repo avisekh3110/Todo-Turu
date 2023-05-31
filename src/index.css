@@ -5,9 +5,8 @@
 @layer {
   /* width */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 9px;
   }
-
   /* Track */
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -15,12 +14,12 @@
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #444e7491;
+    background: #0c15619c;
     border-radius: 10px;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #444e74;
+    background: #0c1561;
   }
 }
