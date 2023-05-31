@@ -49,7 +49,7 @@ function CurrentTodo(prop) {
       <div className="flex flex-row gap-4 justify-center w-full px-3">
         <div className="flex flex-row w-full ">
           <input
-            className="bg-[#ffffff3d] py-2 px-2 outline-none rounded-bl-lg rounded-tl-lg w-full "
+            className="bg-[#ffffff3d] py-2 px-2 outline-none rounded-bl-lg rounded-tl-lg w-full placeholder-slate-700 font-medium"
             placeholder="Enter you task here..."
             type="text"
             value={task}
@@ -70,7 +70,7 @@ function CurrentTodo(prop) {
         <button
           className="bg-red-500 flex-grow py-1 px-2 font-bold text-white rounded-lg outline-none"
           title="ctrl+Shift"
-          onClick={prop.deletAll}
+          onClick={deletAll}
         >
           ABORT
         </button>

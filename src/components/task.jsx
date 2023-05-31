@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import close from "../assets/close-icon.svg";
 function TaskShow(prop) {
   const [isDone, setIsDone] = useState(false);
   const strikeThrough = () => {
@@ -25,7 +25,7 @@ function TaskShow(prop) {
         className="text-white"
         onClick={() => prop.deleteTask(prop.index)}
       >
-        🗙
+        <img width="12" height="12" src={close} alt="close" />
       </button>
     </div>
   );
