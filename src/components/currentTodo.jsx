@@ -42,8 +42,8 @@ function CurrentTodo(prop) {
   };
 
   return (
-    <div className="flex flex-col items-center w-full gap-4">
-      <div className="text-white text-xl font-bold pt-4">
+    <div className="flex flex-col items-center w-full h-full gap-4">
+      <div className="text-white text-sm sm:text-xl font-bold pt-4 px-2">
         WHAT'S TODAY'S PLAN CAPTAIN...??
       </div>
       <div className="flex flex-row gap-4 justify-center w-full px-3">
@@ -75,7 +75,7 @@ function CurrentTodo(prop) {
           ABORT
         </button>
       </div>
-      <div className="flex flex-col gap-2 overflow-y-scroll p-2 w-full">
+      <div className="flex flex-col gap-2  overflow-y-scroll p-2 w-full">
         {activeTasks.map((element, index) => {
           return (
             <TaskShow
@@ -87,6 +87,10 @@ function CurrentTodo(prop) {
           );
         })}
       </div>
+      {/* <div>
+        <button className="bg-gray-700">ADD TO GRID</button>
+        <button className="bg-gray-700">SHOW GRID</button>
+      </div> */}
     </div>
   );
 }
