@@ -7,7 +7,7 @@ function TaskShow(prop) {
   };
 
   return (
-    <div className="flex justify-between bg-[#0c15619c] px-3 py-2 rounded-lg">
+    <div className="flex justify-between bg-[#0c2156a9] px-3 py-2 rounded-lg">
       <div className="flex gap-3 w-5/6  ">
         <input type="checkbox" checked={prop.isDone} onClick={strikeThrough} />
         <div

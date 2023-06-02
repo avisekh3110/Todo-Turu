@@ -3,10 +3,12 @@ import TaskShow from "./task";
 import { useState } from "react";
 
 function CurrentTodo(prop) {
+  const key = "listLoacal";
   const [allTaskList, setAllTaskList] = useState([]);
-  const [activeTasks, setActiveTask] = useState([]);
+  const [activeTasks, setActiveTask] = useState(
+    JSON.parse(localStorage.getItem(key)) || []
+  );
   const [task, setTask] = useState("");
-
   const handleChange = (event) => {
     setTask(event.target.value);
   };
@@ -22,6 +24,7 @@ function CurrentTodo(prop) {
       const newTaskArray = [...activeTasks, newTask];
       setActiveTask(newTaskArray);
       setTask("");
+      localStorage.setItem(key, JSON.stringify(newTaskArray));
     }
   };
 
@@ -34,11 +37,16 @@ function CurrentTodo(prop) {
 
   const deletAll = () => {
     setActiveTask([]);
+    localStorage.clear();
   };
 
   const addIntoList = () => {
     const newMainList = [...allTaskList, activeTasks];
     setAllTaskList(newMainList);
+  };
+
+  const showGrid = () => {
+    prop.setIsFlip(!prop.isFlip);
   };
 
   return (
@@ -60,7 +68,7 @@ function CurrentTodo(prop) {
             }}
           />
           <button
-            className="bg-[#149209] py-2 px-4 font-bold rounded-br-lg rounded-tr-lg text-white outline-none"
+            className="bg-[#003493] py-2 px-4 font-bold rounded-br-lg rounded-tr-lg text-white outline-none hover:bg-[#194aa6] duration-200"
             title="Enter"
             onClick={handleClick}
           >
@@ -68,14 +76,14 @@ function CurrentTodo(prop) {
           </button>
         </div>
         <button
-          className="bg-red-500 flex-grow py-1 px-2 font-bold text-white rounded-lg outline-none"
+          className="bg-red-800 flex-grow py-1 px-2 font-bold text-white rounded-lg outline-none hover:bg-red-6 00 duration-300"
           title="ctrl+Shift"
           onClick={deletAll}
         >
           ABORT
         </button>
       </div>
-      <div className="flex flex-col gap-2  overflow-y-scroll p-2 w-full">
+      <div className="flex flex-col gap-2  overflow-y-scroll p-2 w-full h-3/4">
         {activeTasks.map((element, index) => {
           return (
             <TaskShow
@@ -87,10 +95,17 @@ function CurrentTodo(prop) {
           );
         })}
       </div>
-      {/* <div>
-        <button className="bg-gray-700">ADD TO GRID</button>
-        <button className="bg-gray-700">SHOW GRID</button>
-      </div> */}
+      <div className="bg-white bg-opacity-10 p-2 flex gap-2 w-full">
+        <button className="bg-[#8b5264] hover:  text-md font-bold text-white p-2 w-3/5 rounded-md ">
+          ADD TO GRID
+        </button>
+        <button
+          className="bg-[#01669d] text-md font-bold text-white  p-2 w-2/5 rounded-md"
+          onClick={showGrid}
+        >
+          SHOW GRID
+        </button>
+      </div>
     </div>
   );
 }
