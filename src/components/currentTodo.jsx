@@ -20,6 +20,7 @@ function CurrentTodo(prop) {
             ? 1
             : activeTasks[activeTasks.length - 1].id + 1,
         taskName: task,
+        isDone: false,
       };
       const newTaskArray = [...activeTasks, newTask];
       setActiveTask(newTaskArray);
@@ -33,6 +34,7 @@ function CurrentTodo(prop) {
       return element.id !== index;
     });
     setActiveTask(newFilterArray);
+    localStorage.setItem(key, JSON.stringify(newFilterArray));
   };
 
   const deletAll = () => {
@@ -76,7 +78,7 @@ function CurrentTodo(prop) {
           </button>
         </div>
         <button
-          className="bg-red-800 flex-grow py-1 px-2 font-bold text-white rounded-lg outline-none hover:bg-red-6 00 duration-300"
+          className="bg-red-800 flex-grow py-1 px-2 font-bold text-white rounded-lg outline-none hover:bg-red-600 duration-300"
           title="ctrl+Shift"
           onClick={deletAll}
         >
@@ -90,6 +92,7 @@ function CurrentTodo(prop) {
               taskName={element.taskName}
               index={element.id}
               key={element.id}
+              idDone={element.isDone}
               deleteTask={deleteTask}
             />
           );
