@@ -1,31 +1,17 @@
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import CurrentTodo from "./components/currentTodo";
-import TodoShowList from "./components/todoShowList";
-import { useState } from "react";
-function App() {
-  const [isFlip, setIsFlip] = useState(false);
-  return (
-    <div className="flex flex-col justify-between items-center h-screen bg-[url(./assets/bg-new.jpg)] bg-cover bg-center">
-      <Navbar />
-      <div
-        className=" flex h-3/4 sm:h-3/5 bg-white bg-opacity-20 backdrop-blur-lg w-11/12 sm:w-3/5 md:w-3/5  border lg:w-1/3 rounded-lg duration-500 shadow-2xl overflow-auto "
-        style={{
-          transformStyle: "preserve-3d",
-          transform: isFlip ? "rotateY(180deg)" : "rotateY(0deg)",
-        }}
-      >
-        <div className="h-full w-full">
-          {isFlip ? (
-            <TodoShowList isFlip={isFlip} setIsFlip={setIsFlip} />
-          ) : (
-            <CurrentTodo isFlip={isFlip} setIsFlip={setIsFlip} />
-          )}
-        </div>
-      </div>
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 
-      <Footer />
-    </div>
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<Login />} path="/login" />
+        <Route element={<Signup />} path="/signup" />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

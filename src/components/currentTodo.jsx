@@ -4,7 +4,6 @@ import { useState } from "react";
 
 function CurrentTodo(prop) {
   const key = "listLoacal";
-  const [allTaskList, setAllTaskList] = useState([]);
   const [activeTasks, setActiveTask] = useState(
     JSON.parse(localStorage.getItem(key)) || []
   );
@@ -43,8 +42,9 @@ function CurrentTodo(prop) {
   };
 
   const addIntoList = () => {
-    const newMainList = [...allTaskList, activeTasks];
-    setAllTaskList(newMainList);
+    console.log(activeTasks);
+    const newMainList = [...prop.allTaskList, activeTasks];
+    prop.setAllTaskList(newMainList);
   };
 
   const showGrid = () => {
@@ -99,7 +99,10 @@ function CurrentTodo(prop) {
         })}
       </div>
       <div className="bg-white bg-opacity-10 p-2 flex gap-2 w-full">
-        <button className="bg-[#8b5264] hover:  text-md font-bold text-white p-2 w-3/5 rounded-md ">
+        <button
+          className="bg-[#8b5264] hover:  text-md font-bold text-white p-2 w-3/5 rounded-md "
+          onClick={addIntoList}
+        >
           ADD TO GRID
         </button>
         <button
