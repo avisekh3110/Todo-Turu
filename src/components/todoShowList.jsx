@@ -7,7 +7,7 @@ export default function TodoShowList(prop) {
 
   return (
     <div
-      className="bg-transparent h-full w-full flex flex-col items-center justify-between"
+      className=" bg-transparent h-full w-full flex flex-col items-center justify-between"
       style={{
         transformStyle: "preserve-3d",
         transform: "rotateY(180deg)",

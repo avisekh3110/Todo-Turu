@@ -16,7 +16,7 @@ function Navbar() {
         </Link>
         <Link
           to={"/signup"}
-          className="px-4 sm:px-7 text-sm sm:text-lg bg-transparent hover:bg-white font-semibold rounded-3xl border-2 sm:border-4 border-white duration-300  text-white hover:text-black"
+          className="px-4 sm:px-7 text-sm sm:text-lg bg-transparent hover:bg-white font-semibold rounded-3xl border-2   sm:border-4 border-white duration-300  text-white hover:text-black"
         >
           Signup
         </Link>

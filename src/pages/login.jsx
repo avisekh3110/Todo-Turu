@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <div className="bg-black h-screen flex flex-col justify-center items-center">
-      <form className="bg-slate-300 w-1/2 gap-6 p-6 flex flex-col justify-center items-center">
+      <form className="bg-slate-300 w-4/5 sm:w-1/2 md:w-1/3 gap-6 p-6 flex flex-col justify-center items-center">
         <input
           className="py-4 px-6 w-full"
-          placeholder="E-mail"
-          type="email"
-          name="email"
+          placeholder="Username"
+          type="text"
+          name="uName"
         />
         <input
           className="py-4 px-6 w-full"

@@ -2,14 +2,12 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import CurrentTodo from "../components/currentTodo";
 import TodoShowList from "../components/todoShowList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Home() {
   const [allTaskList, setAllTaskList] = useState([]);
   const [isFlip, setIsFlip] = useState(false);
-  useEffect(() => {
-    console.log(allTaskList);
-  }, [allTaskList]);
+
   return (
     <div className="flex flex-col justify-between items-center h-screen bg-[url(./assets/bg-new.jpg)] bg-cover bg-center select-none">
       <Navbar />
@@ -38,7 +36,6 @@ function Home() {
           )}
         </div>
       </div>
-
       <Footer />
     </div>
   );

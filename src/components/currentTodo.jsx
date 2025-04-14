@@ -1,43 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TaskShow from "./task";
 import { useState } from "react";
+import server from "../utils/axiosinstance";
 
 function CurrentTodo(prop) {
-  const key = "listLoacal";
-  const [activeTasks, setActiveTask] = useState(
-    JSON.parse(localStorage.getItem(key)) || []
-  );
+  const key = "listLocal";
+  const [activeTasks, setActiveTasks] = useState(null);
   const [task, setTask] = useState("");
+
+  useEffect(() => {
+    server
+      .get("/api/task")
+      .then(({ data: { tasks } }) => {
+        setActiveTasks(tasks);
+      })
+      .catch(console.error);
+
+    return () => {};
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem(key, JSON.stringify(activeTasks));
+  //   console.log(activeTasks);
+  // }, [activeTasks]);
+
   const handleChange = (event) => {
     setTask(event.target.value);
   };
   const handleClick = () => {
     if (task.trim() !== "") {
-      const newTask = {
-        id:
-          activeTasks.length === 0
-            ? 1
-            : activeTasks[activeTasks.length - 1].id + 1,
-        taskName: task,
-        isDone: false,
-      };
-      const newTaskArray = [...activeTasks, newTask];
-      setActiveTask(newTaskArray);
+      // const newTask = {
+      //   id:
+      //     activeTasks.length === 0
+      //       ? 1
+      //       : activeTasks[activeTasks.length - 1]._id + 1,
+      //   name: task,
+      //   done: false,
+      // };
+      server
+        .post("/api/task", {
+          name: task,
+        })
+        .then(({ data: { task } }) => {
+          setActiveTasks((prevActTask) => [...prevActTask, task]);
+
+          /**
+          server
+          .get("/api/task")
+          .then(({ data: { tasks } }) => {
+            setActiveTasks(tasks);
+          })
+          .catch(console.error);
+           */
+        })
+        .catch(console.error);
       setTask("");
-      localStorage.setItem(key, JSON.stringify(newTaskArray));
     }
   };
 
   const deleteTask = (index) => {
     const newFilterArray = activeTasks.filter((element) => {
-      return element.id !== index;
+      return element._id !== index;
     });
-    setActiveTask(newFilterArray);
-    localStorage.setItem(key, JSON.stringify(newFilterArray));
+    setActiveTasks(newFilterArray);
+  };
+
+  const checktask = (newTask, elementId) => {
+    console.log(newTask);
+    setActiveTasks((prevActTasks) => {
+      const newTasks = prevActTasks.filter((prevActTask) => {
+        return prevActTask._id != elementId;
+      });
+      return [...newTasks, newTask];
+    });
   };
 
   const deletAll = () => {
-    setActiveTask([]);
+    setActiveTasks([]);
     localStorage.clear();
   };
 
@@ -51,7 +90,7 @@ function CurrentTodo(prop) {
     prop.setIsFlip(!prop.isFlip);
   };
 
-  return (
+  return activeTasks ? (
     <div className="flex flex-col items-center w-full h-full gap-4">
       <div className="text-white text-sm sm:text-xl font-bold pt-4 px-2">
         WHAT'S TODAY'S PLAN CAPTAIN...??
@@ -85,18 +124,21 @@ function CurrentTodo(prop) {
           ABORT
         </button>
       </div>
-      <div className="flex flex-col gap-2  overflow-y-scroll p-2 w-full h-3/4">
-        {activeTasks.map((element, index) => {
-          return (
-            <TaskShow
-              taskName={element.taskName}
-              index={element.id}
-              key={element.id}
-              idDone={element.isDone}
-              deleteTask={deleteTask}
-            />
-          );
-        })}
+      <div className=" flex flex-col gap-2  overflow-y-scroll p-2 w-full h-3/4">
+        {activeTasks
+          .sort((a, b) => a._id - b._id)
+          .map((element, idx) => {
+            return (
+              <TaskShow
+                name={element.name}
+                _id={element._id}
+                key={idx}
+                done={element.done}
+                deleteTask={deleteTask}
+                setTask={(newTask) => checktask(newTask, element._id)}
+              />
+            );
+          })}
       </div>
       <div className="bg-white bg-opacity-10 p-2 flex gap-2 w-full">
         <button
@@ -113,6 +155,8 @@ function CurrentTodo(prop) {
         </button>
       </div>
     </div>
+  ) : (
+    <div>Loading</div>
   );
 }
 
